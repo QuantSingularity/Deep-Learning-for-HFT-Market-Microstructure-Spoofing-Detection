@@ -4,7 +4,6 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](requirements.txt)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](requirements.txt)
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](Dockerfile)
-[![FastAPI](https://img.shields.io/badge/FastAPI-Production-green.svg)](deployment/api/server.py)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 A production-ready framework for detecting algorithmic spoofing in HFT environments using a **TEN-GNN Hybrid Model** combining a Transformer-Encoder Network for temporal asset modeling with a Graph Neural Network for coordinated multi-asset manipulation detection. Designed for real-time market surveillance and regulatory compliance (MiFID II, MAR).
