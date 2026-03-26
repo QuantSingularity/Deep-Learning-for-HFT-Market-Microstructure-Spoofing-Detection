@@ -1,4 +1,3 @@
-# Configuration file for TEN-GNN model
 {
   "model": {
     "type": "TEN",
