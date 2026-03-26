@@ -202,7 +202,7 @@ app = FastAPI(
         "and Graph Neural Networks"
     ),
     version="1.0.0",
-    lifespan=lifespan,  # FIX: wire lifespan; replaces deprecated @app.on_event
+    lifespan=lifespan,
 )
 
 # CORS middleware
@@ -259,7 +259,6 @@ async def predict_single(event: LOBEvent):
     start_time = time.time()
 
     try:
-        # FIX: use model_dump() -- event.dict() is deprecated in Pydantic v2
         event_dict = event.model_dump()
 
         # Process event
@@ -314,7 +313,6 @@ async def predict_batch(request: BatchInferenceRequest):
     results = []
 
     for event in request.events:
-        # FIX: use model_dump() -- event.dict() is deprecated in Pydantic v2
         event_dict = event.model_dump()
         alert = state.detector.process_event(event_dict)
         prediction, confidence, inference_time = state.detector.predict()
