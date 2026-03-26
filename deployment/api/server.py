@@ -8,6 +8,7 @@ import sys
 import time
 import json
 import logging
+from contextlib import asynccontextmanager
 from typing import List, Optional
 from pathlib import Path
 
@@ -94,27 +95,12 @@ SPOOFING_DETECTED = Counter(
 
 ACTIVE_CONNECTIONS = Gauge("ten_gnn_active_connections", "Number of active connections")
 
+
 # ============================================
-# Application Setup
+# Global State
 # ============================================
 
-app = FastAPI(
-    title="TEN-GNN Spoofing Detection API",
-    description="Real-time HFT spoofing detection using Transformer-Encoder Networks and Graph Neural Networks",
-    version="1.0.0",
-)
 
-# CORS middleware
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-
-# Global state
 class AppState:
     def __init__(self):
         self.detector: Optional[RealTimeDetector] = None
@@ -125,17 +111,19 @@ class AppState:
 
 state = AppState()
 
+
 # ============================================
-# Startup/Shutdown Events
+# Lifespan (replaces deprecated @app.on_event)
 # ============================================
 
 
-@app.on_event("startup")
-async def startup_event():
-    """Initialize model and connections"""
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Manage application startup and shutdown via lifespan context manager."""
+
+    # ── Startup ──────────────────────────────────────────────────────────────
     logger.info("Starting TEN-GNN API Server...")
 
-    # Get configuration
     model_path = os.getenv(
         "MODEL_PATH", "/app/pretrained_models/ten_model_synthetic.pth"
     )
@@ -172,7 +160,7 @@ async def startup_event():
             confidence_threshold=0.8,
         )
 
-        logger.info("✓ Model loaded successfully")
+        logger.info("Model loaded successfully")
 
     except Exception as e:
         logger.error(f"Failed to load model: {e}")
@@ -185,23 +173,46 @@ async def startup_event():
             host=redis_host, port=6379, db=0, decode_responses=True
         )
         state.redis_client.ping()
-        logger.info(f"✓ Connected to Redis at {redis_host}")
+        logger.info(f"Connected to Redis at {redis_host}")
     except Exception as e:
         logger.warning(f"Redis connection failed: {e}")
         state.redis_client = None
 
     logger.info("TEN-GNN API Server started successfully!")
 
+    yield  # Application runs here
 
-@app.on_event("shutdown")
-async def shutdown_event():
-    """Cleanup on shutdown"""
+    # ── Shutdown ─────────────────────────────────────────────────────────────
     logger.info("Shutting down TEN-GNN API Server...")
 
     if state.redis_client:
         state.redis_client.close()
 
     logger.info("Shutdown complete")
+
+
+# ============================================
+# Application Setup  (must come after lifespan is defined)
+# ============================================
+
+app = FastAPI(
+    title="TEN-GNN Spoofing Detection API",
+    description=(
+        "Real-time HFT spoofing detection using Transformer-Encoder Networks "
+        "and Graph Neural Networks"
+    ),
+    version="1.0.0",
+    lifespan=lifespan,  # FIX: wire lifespan; replaces deprecated @app.on_event
+)
+
+# CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 # ============================================
@@ -248,8 +259,8 @@ async def predict_single(event: LOBEvent):
     start_time = time.time()
 
     try:
-        # Convert to dict
-        event_dict = event.dict()
+        # FIX: use model_dump() -- event.dict() is deprecated in Pydantic v2
+        event_dict = event.model_dump()
 
         # Process event
         alert = state.detector.process_event(event_dict)
@@ -303,7 +314,8 @@ async def predict_batch(request: BatchInferenceRequest):
     results = []
 
     for event in request.events:
-        event_dict = event.dict()
+        # FIX: use model_dump() -- event.dict() is deprecated in Pydantic v2
+        event_dict = event.model_dump()
         alert = state.detector.process_event(event_dict)
         prediction, confidence, inference_time = state.detector.predict()
 

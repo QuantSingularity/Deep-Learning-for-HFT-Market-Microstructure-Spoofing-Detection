@@ -235,7 +235,7 @@ class FalsePositiveAnalyzer:
         print(f"  Missed Profit: ${optimal_row['missed_profit']:,.2f}")
         print(f"  Regulatory: ${optimal_row['regulatory_cost']:,.2f}")
         print(f"  Compliance: ${optimal_row['compliance_overhead']:,.2f}")
-        print(f"  ─" * 35)
+        print("  " + "─" * 35)
         print(f"  TOTAL: ${optimal_row['total_cost']:,.2f}/month")
 
         # Compare with high precision threshold

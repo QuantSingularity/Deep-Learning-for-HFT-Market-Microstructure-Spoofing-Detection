@@ -45,7 +45,7 @@ class IntegratedGradients:
         Returns:
             Gradients
         """
-        inputs.requires_grad = True
+        inputs.requires_grad_(True)
 
         outputs = self.model(inputs, time_deltas)
 

@@ -316,7 +316,7 @@ class LOBFeatureExtractor:
                 ]
             )
         else:
-            np.zeros(4)
+            second_order_array = np.zeros(4)
 
         # Concatenate all features (40 + 7 + 4 + 1 + 4 = 56 features)
         # Note: Paper mentions 47 features, but detailed enumeration gives more
@@ -334,6 +334,7 @@ class LOBFeatureExtractor:
                 micro_array[:3],  # 3 features: imbalance, spread, mid_price
                 order_flow[1:],  # 3 features: volume, side, order_type
                 time_feature,  # 1 feature
+                second_order_array,  # 4 features (rates of change, or zeros)
             ]
         )
 

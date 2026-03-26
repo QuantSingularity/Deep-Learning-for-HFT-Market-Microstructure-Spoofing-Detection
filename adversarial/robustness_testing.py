@@ -240,10 +240,10 @@ class RobustnessTester:
 
         with torch.no_grad():
             # Disable gradients for clean evaluation
-            for batch_idx, (sequences, labels, time_deltas) in enumerate(data_loader):
-                sequences = sequences.to(self.device)
-                labels = labels.to(self.device)
-                time_deltas = time_deltas.to(self.device)
+            for batch_idx, batch in enumerate(data_loader):
+                sequences = batch["sequence"].to(self.device)
+                labels = batch["label"].to(self.device)
+                time_deltas = batch["time_delta"].to(self.device)
 
                 # Clean accuracy
                 logits_clean = self.model(sequences, time_deltas)
@@ -255,10 +255,10 @@ class RobustnessTester:
         # Generate and evaluate adversarial examples
         self.model.eval()
 
-        for batch_idx, (sequences, labels, time_deltas) in enumerate(data_loader):
-            sequences = sequences.to(self.device)
-            labels = labels.to(self.device)
-            time_deltas = time_deltas.to(self.device)
+        for batch_idx, batch in enumerate(data_loader):
+            sequences = batch["sequence"].to(self.device)
+            labels = batch["label"].to(self.device)
+            time_deltas = batch["time_delta"].to(self.device)
 
             # Generate adversarial examples
             if attack_type == "fgsm":

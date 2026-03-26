@@ -120,8 +120,13 @@ class HawkesProcessEstimator:
 
             self.mu = result.x[:n]
             self.alpha = result.x[n:].reshape(n, n)
-        except:
-            # Fallback to simple estimation
+        except Exception as e:
+            # Fallback to simple estimation if optimization fails
+            import warnings
+
+            warnings.warn(
+                f"Hawkes MLE optimization failed ({e}); using simple rate estimates."
+            )
             self.mu = mu_init
             self.alpha = alpha_init
 
