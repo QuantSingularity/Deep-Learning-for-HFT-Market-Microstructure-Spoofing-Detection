@@ -442,7 +442,7 @@ if __name__ == "__main__":
 
     lob_event = fix_adapter.to_lob_event(fix_message)
     if lob_event:
-        print(f"Converted LOB Event:")
+        print("Converted LOB Event:")
         print(f"  Asset: {lob_event['asset']}")
         print(f"  Mid Price: {lob_event['mid_price']:.2f}")
         print(f"  Spread: {lob_event['spread']:.4f}")
@@ -465,7 +465,7 @@ if __name__ == "__main__":
     }
 
     lob_event = itch_adapter.to_lob_event(itch_message, "AAPL")
-    print(f"Converted LOB Event:")
+    print("Converted LOB Event:")
     print(f"  Asset: {lob_event['asset']}")
     print(f"  Timestamp: {lob_event['timestamp']:.0f}ms")
 

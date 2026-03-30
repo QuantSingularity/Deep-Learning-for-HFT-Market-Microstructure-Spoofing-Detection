@@ -307,7 +307,7 @@ class RobustnessTester:
         )
 
         # Print results
-        print(f"\nResults:")
+        print("\nResults:")
         print(f"  Clean Accuracy:        {clean_accuracy:.4f}")
         print(f"  Adversarial Accuracy:  {adversarial_accuracy:.4f}")
         print(f"  Robustness Score:      {robustness_score:.4f}")
@@ -350,7 +350,7 @@ class RobustnessTester:
                 results[attack_type].append(metrics)
 
         # Test market-specific attack
-        print(f"\nMarket Microstructure Attack")
+        print("\nMarket Microstructure Attack")
         print("-" * 70)
         metrics = self.evaluate_robustness(
             data_loader, attack_type="market", epsilon=0.0  # Not used for market attack

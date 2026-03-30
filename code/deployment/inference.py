@@ -314,7 +314,7 @@ if __name__ == "__main__":
         alert = detector.process_event(lob_event)
 
         if alert:
-            print(f"\n🚨 ALERT: Spoofing detected!")
+            print("\n🚨 ALERT: Spoofing detected!")
             print(f"  Confidence: {alert['confidence']:.4f}")
             print(f"  Inference time: {alert['inference_time_ms']:.3f}ms")
 

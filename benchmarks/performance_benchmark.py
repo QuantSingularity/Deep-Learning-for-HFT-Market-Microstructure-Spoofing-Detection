@@ -139,7 +139,7 @@ class ModelBenchmark:
             gpu_memory_mb=gpu_memory,
         )
 
-        print(f"  Results:")
+        print("  Results:")
         print(f"    Mean latency: {mean_latency:.2f}ms")
         print(f"    P95 latency: {p95_latency:.2f}ms")
         print(f"    P99 latency: {p99_latency:.2f}ms")
@@ -301,7 +301,7 @@ def run_production_benchmark():
     if device == "cuda":
         max_gpu_memory = max(results, key=lambda r: r.gpu_memory_mb)
         print(f"  GPU memory: {max_gpu_memory.gpu_memory_mb:.1f}MB")
-        print(f"  → Recommended GPU: 4GB+ VRAM")
+        print("  → Recommended GPU: 4GB+ VRAM")
 
     print("=" * 70)
 

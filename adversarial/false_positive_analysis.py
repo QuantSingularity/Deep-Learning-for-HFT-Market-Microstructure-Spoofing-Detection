@@ -223,13 +223,13 @@ class FalsePositiveAnalyzer:
         optimal_idx = results_df["total_cost"].idxmin()
         optimal_row = results_df.iloc[optimal_idx]
 
-        print(f"\nOptimal Threshold Analysis:")
+        print("\nOptimal Threshold Analysis:")
         print(f"  Threshold: {optimal_row['threshold']:.2f}")
         print(f"  Precision: {optimal_row['precision']:.4f}")
         print(f"  Recall: {optimal_row['recall']:.4f}")
         print(f"  F1-Score: {optimal_row['f1_score']:.4f}")
         print(f"  False Positive Rate: {optimal_row['false_positive_rate']:.4f}")
-        print(f"\nMonthly Cost Breakdown:")
+        print("\nMonthly Cost Breakdown:")
         print(f"  Investigation: ${optimal_row['investigation_cost']:,.2f}")
         print(f"  Trading Pause: ${optimal_row['trading_pause_cost']:,.2f}")
         print(f"  Missed Profit: ${optimal_row['missed_profit']:,.2f}")
@@ -256,7 +256,7 @@ class FalsePositiveAnalyzer:
         baseline_cost = self.cost_params.compliance_overhead  # Manual compliance only
         savings = baseline_cost - optimal_row["total_cost"]
 
-        print(f"\nROI Analysis:")
+        print("\nROI Analysis:")
         print(f"  Baseline (Manual) Cost: ${baseline_cost:,.2f}/month")
         print(f"  Automated System Cost: ${optimal_row['total_cost']:,.2f}/month")
         print(f"  Monthly Savings: ${savings:,.2f}")

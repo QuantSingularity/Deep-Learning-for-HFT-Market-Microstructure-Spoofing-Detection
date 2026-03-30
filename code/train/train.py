@@ -142,7 +142,7 @@ def generate_synthetic_data(args):
 
     # Convert to feature format
     print("\nExtracting features...")
-    feature_extractor = LOBFeatureExtractor(num_levels=10)
+    LOBFeatureExtractor(num_levels=10)
 
     processed_sequences = []
     time_deltas = []
@@ -174,7 +174,7 @@ def generate_synthetic_data(args):
     labels_array = np.array(labels)
     time_deltas_array = np.stack(time_deltas)
 
-    print(f"\nGenerated dataset:")
+    print("\nGenerated dataset:")
     print(f"  - Sequences shape: {sequences_array.shape}")
     print(f"  - Labels shape: {labels_array.shape}")
     print(f"  - Spoofing samples: {np.sum(labels_array == 1)}")
@@ -205,7 +205,7 @@ def create_data_loaders(sequences, labels, time_deltas, args):
         generator=torch.Generator().manual_seed(args.seed),
     )
 
-    print(f"Dataset split:")
+    print("Dataset split:")
     print(f"  - Train: {len(train_dataset)} samples")
     print(f"  - Val:   {len(val_dataset)} samples")
     print(f"  - Test:  {len(test_dataset)} samples")
@@ -286,7 +286,7 @@ def main():
     print("\n" + "=" * 70)
     print("TEN-GNN Spoofing Detection Training")
     print("=" * 70)
-    print(f"\nConfiguration:")
+    print("\nConfiguration:")
     for arg in vars(args):
         print(f"  {arg}: {getattr(args, arg)}")
 

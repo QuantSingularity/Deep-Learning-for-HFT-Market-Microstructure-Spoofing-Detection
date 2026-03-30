@@ -308,7 +308,7 @@ class Trainer:
             if epoch % 10 == 0:
                 self.save_checkpoint(epoch, is_best=False)
 
-        print(f"\nTraining completed!")
+        print("\nTraining completed!")
         print(f"Best F1-score: {self.best_val_f1:.4f} at epoch {self.best_epoch}")
 
         # Save training history

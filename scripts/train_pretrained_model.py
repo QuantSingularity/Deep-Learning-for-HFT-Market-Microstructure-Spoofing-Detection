@@ -31,7 +31,7 @@ def main():
     BATCH_SIZE = 64
     NUM_EPOCHS = 100
 
-    print(f"\nConfiguration:")
+    print("\nConfiguration:")
     print(f"  Device: {DEVICE}")
     print(f"  Samples: {NUM_SAMPLES}")
     print(f"  Batch Size: {BATCH_SIZE}")

@@ -74,7 +74,7 @@ class LOBStreamingConsumer:
         # Shutdown flag
         self.should_shutdown = False
 
-        logger.info(f"✓ Consumer initialized")
+        logger.info("✓ Consumer initialized")
         logger.info(f"  - Kafka: {kafka_bootstrap_servers}")
         logger.info(f"  - Topic: {kafka_topic}")
         logger.info(f"  - API: {api_url}")
@@ -118,7 +118,7 @@ class LOBStreamingConsumer:
                 self.errors += 1
 
         except requests.exceptions.Timeout:
-            logger.error(f"API request timeout")
+            logger.error("API request timeout")
             self.errors += 1
 
         except Exception as e:
@@ -239,7 +239,7 @@ def main():
     logger.info("=" * 70)
     logger.info("TEN-GNN Streaming Consumer")
     logger.info("=" * 70)
-    logger.info(f"Configuration:")
+    logger.info("Configuration:")
     logger.info(f"  Kafka: {kafka_bootstrap_servers}")
     logger.info(f"  Topic: {kafka_topic}")
     logger.info(f"  API: {api_url}")

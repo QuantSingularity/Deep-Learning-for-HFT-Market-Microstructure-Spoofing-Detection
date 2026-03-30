@@ -523,7 +523,7 @@ if __name__ == "__main__":
     # Inject pattern
     if len(baselines) > 0:
         modified, metadata = framework.inject_spoofing_pattern(baselines[0], "layering")
-        print(f"\nInjection metadata:")
+        print("\nInjection metadata:")
         print(f"  Pattern type: {metadata['pattern_type']}")
         print(f"  Injection point: {metadata['injection_point']}")
         print(f"  Placed volume: {metadata['placed_volume']}")
