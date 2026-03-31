@@ -5,13 +5,14 @@ This module provides optimized inference for deployment in live trading environm
 Supports batched and streaming inference with latency monitoring.
 """
 
+import json
+import time
+from collections import deque
+from typing import Dict, Optional, Tuple
+
+import numpy as np
 import torch
 import torch.nn as nn
-import numpy as np
-import time
-from typing import Dict, Optional, Tuple
-from collections import deque
-import json
 
 
 class RealTimeDetector:

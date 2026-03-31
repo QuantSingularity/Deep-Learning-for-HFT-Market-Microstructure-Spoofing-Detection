@@ -3,16 +3,17 @@ Training Module for TEN-GNN Model
 Implements training loop, validation, and optimization strategies
 """
 
+import json
+import os
+from typing import Dict, Optional
+
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torch.utils.data import Dataset, DataLoader
-import numpy as np
-from typing import Dict, Optional
+from sklearn.metrics import confusion_matrix, f1_score, precision_score, recall_score
+from torch.utils.data import DataLoader, Dataset
 from tqdm import tqdm
-import os
-import json
-from sklearn.metrics import precision_score, recall_score, f1_score, confusion_matrix
 
 
 class LOBDataset(Dataset):

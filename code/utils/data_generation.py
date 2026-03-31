@@ -3,10 +3,11 @@ Data Generation Module: Adversarial Backtest Framework
 Implements synthetic spoofing pattern injection as described in Section 3.2
 """
 
+import warnings
+from typing import Dict, List, Optional, Tuple
+
 import numpy as np
 import pandas as pd
-from typing import Dict, List, Tuple, Optional
-import warnings
 
 warnings.filterwarnings("ignore")
 

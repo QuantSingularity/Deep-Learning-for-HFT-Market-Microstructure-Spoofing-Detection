@@ -4,10 +4,11 @@ Based on: High-Frequency Market Microstructure Analysis using Transformer-Encode
 Author: Implementation based on Abrar Ahmed's research (2026)
 """
 
+import math
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import math
 
 
 class AdaptiveTemporalPositionalEncoding(nn.Module):

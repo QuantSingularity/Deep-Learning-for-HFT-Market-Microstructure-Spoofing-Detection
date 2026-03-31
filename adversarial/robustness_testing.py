@@ -4,14 +4,15 @@ Tests model robustness against adversarial evasion attacks
 Implements adversarial training for improved robustness
 """
 
+import sys
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Dict, List
+
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import numpy as np
-from typing import Dict, List
-import sys
-from pathlib import Path
-from dataclasses import dataclass
 
 # Add project root to path
 project_root = Path(__file__).parent.parent

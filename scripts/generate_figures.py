@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
-import numpy as np
-import seaborn as sns
-import pandas as pd
 import networkx as nx
+import numpy as np
+import pandas as pd
+import seaborn as sns
 
 # Set style for high-quality figures
 plt.style.use("seaborn-v0_8-paper")

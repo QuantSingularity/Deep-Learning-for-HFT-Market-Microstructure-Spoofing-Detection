@@ -4,19 +4,21 @@ Generates model checkpoint ready for deployment
 """
 
 import sys
-import torch
-import numpy as np
 from pathlib import Path
+
+import numpy as np
+import torch
 
 # Add project root to path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
 from code.models.transformer_encoder import TransformerEncoderNetwork
-from code.utils.training import LOBDataset, Trainer
 from code.utils.data_generation import AdversarialBacktestFramework
-from torch.utils.data import DataLoader, random_split
+from code.utils.training import LOBDataset, Trainer
+
 import pandas as pd
+from torch.utils.data import DataLoader, random_split
 
 
 def main():

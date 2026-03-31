@@ -2,25 +2,26 @@
 Main Training Script for TEN-GNN Spoofing Detection Model
 """
 
-import torch
-import numpy as np
 import argparse
 import json
 import os
 import sys
 from pathlib import Path
 
+import numpy as np
+import torch
+
 # Add project root to path
 project_root = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(project_root))
 
-from models.transformer_encoder import TransformerEncoderNetwork
-from models.hawkes_gnn import TEN_GNN_Hybrid
-from utils.training import LOBDataset, Trainer, evaluate_model
-from utils.feature_engineering import LOBFeatureExtractor
-from utils.data_generation import AdversarialBacktestFramework
-from torch.utils.data import DataLoader, random_split
 import pandas as pd
+from models.hawkes_gnn import TEN_GNN_Hybrid
+from models.transformer_encoder import TransformerEncoderNetwork
+from torch.utils.data import DataLoader, random_split
+from utils.data_generation import AdversarialBacktestFramework
+from utils.feature_engineering import LOBFeatureExtractor
+from utils.training import LOBDataset, Trainer, evaluate_model
 
 
 def parse_args():

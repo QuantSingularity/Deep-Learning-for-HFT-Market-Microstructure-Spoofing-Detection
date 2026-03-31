@@ -2,24 +2,25 @@
 Unit tests for TEN-GNN implementation
 """
 
-import unittest
-import torch
-import numpy as np
 import sys
+import unittest
 from pathlib import Path
+
+import numpy as np
+import torch
 
 # Add project root to path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
+from models.hawkes_gnn import HawkesGNN, HawkesProcessEstimator
 from models.transformer_encoder import (
-    TransformerEncoderNetwork,
     AdaptiveTemporalPositionalEncoding,
     MultiHeadAttention,
+    TransformerEncoderNetwork,
 )
-from models.hawkes_gnn import HawkesProcessEstimator, HawkesGNN
-from utils.feature_engineering import LOBFeatureExtractor, SpoofingLabelGenerator
 from utils.data_generation import SpoofingPatternGenerator
+from utils.feature_engineering import LOBFeatureExtractor, SpoofingLabelGenerator
 
 
 class TestTransformerEncoder(unittest.TestCase):

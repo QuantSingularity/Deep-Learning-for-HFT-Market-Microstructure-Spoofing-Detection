@@ -3,9 +3,10 @@ Feature Engineering for Limit Order Book (LOB) Data
 Implements microstructure features as described in Section 3.1
 """
 
-import numpy as np
-from typing import Dict, Tuple, Optional
 import warnings
+from typing import Dict, Optional, Tuple
+
+import numpy as np
 
 warnings.filterwarnings("ignore")
 

@@ -3,28 +3,28 @@ Production FastAPI Server for TEN-GNN Spoofing Detection
 Provides REST API for real-time inference with monitoring
 """
 
+import json
+import logging
 import os
 import sys
 import time
-import json
-import logging
 from contextlib import asynccontextmanager
-from typing import List, Optional
 from pathlib import Path
+from typing import List, Optional
 
 # Add project root to path
 project_root = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(project_root))
 
+from code.deployment.inference import RealTimeDetector
+from code.models.transformer_encoder import TransformerEncoderNetwork
+
+import redis
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, Field
-import redis
-from prometheus_client import Counter, Histogram, Gauge, generate_latest
 from fastapi.responses import PlainTextResponse
-
-from code.models.transformer_encoder import TransformerEncoderNetwork
-from code.deployment.inference import RealTimeDetector
+from prometheus_client import Counter, Gauge, Histogram, generate_latest
+from pydantic import BaseModel, Field
 
 # Configure logging
 logging.basicConfig(
@@ -412,8 +412,9 @@ async def get_recent_alerts(limit: int = 100):
 # ============================================
 
 if __name__ == "__main__":
-    import uvicorn
     import argparse
+
+    import uvicorn
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--host", default="0.0.0.0", help="Host address")

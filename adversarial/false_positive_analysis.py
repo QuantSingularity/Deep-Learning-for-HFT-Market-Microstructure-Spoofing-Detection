@@ -4,11 +4,12 @@ Analyzes the impact of false positives on HFT trading operations
 Provides cost-benefit analysis for different confidence thresholds
 """
 
+from dataclasses import dataclass
+from typing import Dict
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from typing import Dict
-from dataclasses import dataclass
-import matplotlib.pyplot as plt
 
 
 @dataclass

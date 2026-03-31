@@ -6,12 +6,13 @@ Based on: High-Frequency Market Microstructure Analysis
 Implementation of Section 3.3 - Hawkes Process Causality
 """
 
+from typing import Dict
+
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import numpy as np
 from scipy.optimize import minimize
-from typing import Dict
 
 
 class HawkesProcessEstimator:

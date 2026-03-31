@@ -3,16 +3,16 @@ Kafka Consumer for Real-Time LOB Event Processing
 Consumes market data from Kafka and sends to TEN-GNN API for inference
 """
 
-import os
 import json
-import time
 import logging
-from typing import Dict
+import os
 import signal
+import time
+from typing import Dict
 
-from kafka import KafkaConsumer
 import redis
 import requests
+from kafka import KafkaConsumer
 
 # Configure logging
 logging.basicConfig(

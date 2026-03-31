@@ -3,16 +3,17 @@ Computational Benchmarking for TEN-GNN Models
 Tests inference throughput, latency, and memory usage on different hardware
 """
 
+import json
+import sys
+import time
+from dataclasses import asdict, dataclass
+from pathlib import Path
+from typing import List
+
+import numpy as np
+import psutil
 import torch
 import torch.nn as nn
-import numpy as np
-import time
-import psutil
-import json
-from typing import List
-from dataclasses import dataclass, asdict
-import sys
-from pathlib import Path
 
 # Add project root to path
 project_root = Path(__file__).parent.parent

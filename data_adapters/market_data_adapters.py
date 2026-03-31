@@ -3,10 +3,11 @@ Data Adapters for Common Market Data Formats
 Transforms FIX, ITCH, and OUCH messages to TEN-GNN 47-feature format
 """
 
-import numpy as np
-from typing import Dict, Tuple, Optional
 from collections import deque
 from datetime import datetime
+from typing import Dict, Optional, Tuple
+
+import numpy as np
 
 
 class LOBFeatureTransformer:
