@@ -59,7 +59,6 @@ class RealTimeDetector:
         self.feature_buffer: deque = deque(maxlen=window_size)
         self.time_buffer: deque = deque(maxlen=window_size)  # stores time deltas
 
-        # FIX: track last absolute timestamp separately for correct delta computation
         self._last_timestamp: Optional[float] = None
 
         # Alert tracking
@@ -112,7 +111,6 @@ class RealTimeDetector:
         """
         self.feature_buffer.append(features)
 
-        # FIX: compute delta from last *absolute* timestamp, not last delta
         if self._last_timestamp is not None:
             time_delta = timestamp - self._last_timestamp
         else:

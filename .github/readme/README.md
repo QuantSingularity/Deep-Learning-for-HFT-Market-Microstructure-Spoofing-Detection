@@ -2,7 +2,7 @@
 
 > GitHub Actions workflow to enforce repository-wide formatting and linting for Python, Markdown, and YAML files.
 
-[![CI Formatting Check](https://img.shields.io/badge/ci-formatting--check-blue.svg)]()
+[![CI Formatting Check](https://img.shields.io/badge/ci-formatting--check-blue.svg)](<>)
 
 ---
 

@@ -142,9 +142,7 @@ def generate_synthetic_data(args):
 
     # Convert to feature format
     print("\nExtracting features...")
-    feature_extractor = LOBFeatureExtractor(
-        num_levels=10
-    )  # FIX: assigned, not discarded
+    feature_extractor = LOBFeatureExtractor(num_levels=10)
 
     processed_sequences = []
     time_deltas = []
