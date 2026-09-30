@@ -50,7 +50,7 @@ jobs:
         run: |
           set -euo pipefail
           if [ ! -d "${{ env.BACKEND_DIR }}" ]; then
-            echo "Backend directory '${{ env.BACKEND_DIR }}' not found — skipping Python formatting."
+            echo "Backend directory '${{ env.BACKEND_DIR }}' not found - skipping Python formatting."
             exit 0
           fi
 
